@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Cadastro de projeto</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&display=swap">
+<style>
+:root{--color-primary:#3730A3;--color-primary-soft:#E0E7FF;--color-secondary:#0F766E;--color-secondary-soft:#CCFBF1;--color-tertiary:#6D28D9;--color-tertiary-soft:#EDE9FE;--color-error:#B42318;--color-error-soft:#FEE4E2;--color-warning-soft:#FEF3C7;--color-warning-text:#7A4B00;--color-text:#0F172A;--color-text-body:#334155;--color-text-muted:#5B6B7F;--color-border:#E2E8F0;--color-border-field:#94A3B8;--color-bg:#F1F5F9;--color-surface:#fff;--color-neutral:#94A3B8;--radius-control:8px;--radius-card:12px;--radius-pill:999px;--touch-target:44px;--control-height:44px;--page-gutter:16px;--shadow-card:0 1px 2px rgba(15,23,42,.06);--focus-ring:0 0 0 3px #fff,0 0 0 5px #3730A3;--font:"Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif;--c1:#3730A3;--c2:#0F766E;--c3:#C58A00}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--color-primary:#4F46E5;--color-primary-soft:#26264F;--color-secondary-soft:#12403C;--color-tertiary-soft:#2E2352;--color-error:#FF8A80;--color-error-soft:#3B1A18;--color-warning-soft:#3A2D10;--color-warning-text:#F2C46B;--color-text:#E8EEF5;--color-text-body:#C5D0DC;--color-text-muted:#9DB0C2;--color-border:#2B3A4A;--color-border-field:#5E7186;--color-bg:#0E1620;--color-surface:#152130;--focus-ring:0 0 0 3px #152130,0 0 0 5px #A5B4FC;--c1:#818CF8;--c2:#2DD4BF;--c3:#E0A82E}}
+:root[data-theme="dark"]{color-scheme:dark;--color-primary:#4F46E5;--color-primary-soft:#26264F;--color-secondary-soft:#12403C;--color-tertiary-soft:#2E2352;--color-error:#FF8A80;--color-error-soft:#3B1A18;--color-warning-soft:#3A2D10;--color-warning-text:#F2C46B;--color-text:#E8EEF5;--color-text-body:#C5D0DC;--color-text-muted:#9DB0C2;--color-border:#2B3A4A;--color-border-field:#5E7186;--color-bg:#0E1620;--color-surface:#152130;--focus-ring:0 0 0 3px #152130,0 0 0 5px #A5B4FC;--c1:#818CF8;--c2:#2DD4BF;--c3:#E0A82E}
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--color-bg);color:var(--color-text-body);font:15px/22px var(--font)}
+a{color:var(--color-primary)}
+.skip{position:absolute;left:8px;top:-60px;background:#3730A3;color:#fff;padding:10px 14px;border-radius:8px;z-index:100}.skip:focus{top:8px}
+.app{min-height:100vh}
+.side{position:fixed;inset:0 auto 0 0;width:280px;max-width:86vw;background:#2E2A7A;color:#E2E8F0;display:flex;flex-direction:column;transform:translateX(-100%);transition:transform .2s;z-index:50;overflow-y:auto;visibility:hidden}
+.app.menu-open .side{transform:none;visibility:visible}
+.scrim{position:fixed;inset:0;background:rgba(15,23,42,.5);z-index:40}.scrim[hidden]{display:none}
+.side-brand{display:flex;align-items:center;gap:10px;padding:16px;border-bottom:1px solid rgba(255,255,255,.14)}
+.logo{width:36px;height:36px;border-radius:8px;background:#fff;color:#2E2A7A;display:grid;place-items:center;font-weight:700}
+.side-brand .nm{font-weight:700;font-size:18px;color:#fff;line-height:20px}.side-brand small{display:block;font-size:11px;color:#C7D2FE}
+.side-close{margin-left:auto;color:#fff}
+.nav{padding:12px;display:flex;flex-direction:column;gap:2px;flex:1}
+.nav h2{margin:14px 12px 6px;font-size:12px;color:#C7D2FE;font-weight:600}
+.nav a,.nav .soon{display:flex;align-items:center;gap:12px;min-height:44px;padding:0 12px;border-radius:8px;color:#E2E8F0;font-weight:500;font-size:14px;text-decoration:none}
+.nav a:hover{background:rgba(255,255,255,.1)}.nav a[aria-current=page]{background:rgba(255,255,255,.18);color:#fff;font-weight:600}
+.nav a:focus-visible,.side button:focus-visible{outline:2px solid #fff;outline-offset:2px}
+.nav .soon{opacity:.7}.nav .soon em{margin-left:auto;font-style:normal;font-size:11px;border:1px solid rgba(255,255,255,.35);border-radius:999px;padding:1px 8px}
+.side-foot{padding:12px 16px;border-top:1px solid rgba(255,255,255,.14);font-size:12px;color:#C7D2FE}
+.main-col{min-width:0}
+.top{position:sticky;top:0;z-index:30;display:flex;align-items:center;gap:8px;height:60px;padding:0 var(--page-gutter);background:var(--color-surface);border-bottom:1px solid var(--color-border)}
+.brand-sm{font-weight:700;color:var(--color-primary);font-size:18px}
+.icon-btn{width:44px;height:44px;display:inline-grid;place-items:center;border:0;background:none;color:inherit;border-radius:8px;cursor:pointer;font-size:22px}
+.icon-btn:hover{background:var(--color-bg)}
+.who{margin-left:auto;display:flex;align-items:center;gap:10px}.who label{font-size:12px;color:var(--color-text-muted)}
+.who select{height:40px;width:auto;min-width:0}
+.avatar{width:36px;height:36px;border-radius:50%;background:var(--color-primary-soft);color:var(--color-primary);display:grid;place-items:center;font-weight:700;font-size:13px}
+main#main{padding:20px var(--page-gutter) 48px;max-width:1200px;margin-inline:auto}
+@media (min-width:1024px){.app{display:grid;grid-template-columns:264px minmax(0,1fr)}.side{position:sticky;top:0;height:100vh;transform:none;visibility:visible;width:264px;max-width:none}.side-close,.menu-btn,.brand-sm,.scrim{display:none!important}main#main{padding:28px 32px 56px}.top{padding:0 32px}}
+.page-head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px 16px;margin-bottom:16px}
+.page-head h1{margin:0 0 6px;font-size:24px;line-height:32px;color:var(--color-text);letter-spacing:-.015em}
+.pills{display:flex;flex-wrap:wrap;gap:8px}
+.pill{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:2px 10px;font-size:12px;font-weight:600;white-space:nowrap;background:var(--color-bg);color:var(--color-text-body);border:1px solid var(--color-border)}
+.pill.ok{background:var(--color-secondary-soft);color:var(--color-secondary);border-color:transparent}.pill.info{background:var(--color-primary-soft);color:var(--color-primary);border-color:transparent}
+.pill.warn{background:var(--color-warning-soft);color:var(--color-warning-text);border-color:transparent}.pill.danger{background:var(--color-error-soft);color:var(--color-error);border-color:transparent}
+.btn{font:600 14px var(--font);min-height:44px;padding:0 18px;border-radius:8px;border:1px solid var(--color-border-field);background:var(--color-surface);color:var(--color-text);cursor:pointer}
+.btn:hover:not(:disabled){background:var(--color-bg)}.btn:disabled{opacity:.5;cursor:not-allowed}
+.btn.primary{background:var(--color-primary);border-color:var(--color-primary);color:#fff}.btn.primary:hover:not(:disabled){filter:brightness(1.12);background:var(--color-primary)}
+.btn.sm{min-height:40px;font-size:13px;padding:0 12px}.btn.link{border-color:transparent;background:none;color:var(--color-primary);text-decoration:underline}
+button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,.chip:has(input:focus-visible){outline:none;box-shadow:var(--focus-ring)}
+.metrics{display:grid;gap:12px;grid-template-columns:1fr;margin-bottom:16px}
+@media (min-width:640px){.metrics{grid-template-columns:1fr 1fr}}@media (min-width:1024px){.metrics{grid-template-columns:repeat(4,1fr)}}
+.panel{background:var(--color-surface);border:1px solid var(--color-border);border-radius:12px;box-shadow:var(--shadow-card)}.panel+.panel{margin-top:16px}
+.metric{padding:14px 16px;display:flex;flex-direction:column;gap:2px}.metric span{font-size:13px;color:var(--color-text-muted)}
+.metric b{font-size:22px;line-height:30px;color:var(--color-text);font-variant-numeric:tabular-nums}.metric small{font-size:12px;color:var(--color-text-muted)}
+.miss{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 16px;padding:0;list-style:none}.miss:empty{display:none}
+.miss button{border:1px solid var(--color-error);background:var(--color-error-soft);color:var(--color-error);border-radius:999px;font:600 12px var(--font);padding:4px 12px;min-height:32px;cursor:pointer}
+.panel-pad{padding:18px 16px}@media (min-width:640px){.panel-pad{padding:22px 24px}}
+.panel h2{margin:0 0 2px;font-size:17px;line-height:24px;color:var(--color-text)}.desc{margin:0 0 16px;color:var(--color-text-muted);font-size:14px}
+.grid2,.grid3{display:grid;gap:14px 16px;grid-template-columns:1fr}
+@media (min-width:720px){.grid2{grid-template-columns:1fr 1fr}.grid3{grid-template-columns:repeat(3,1fr)}.span2{grid-column:span 2}.span3{grid-column:1/-1}}
+.f{display:flex;flex-direction:column;gap:5px;min-width:0}.f>label,.lbl{font-weight:600;font-size:14px;color:var(--color-text)}
+.req{color:var(--color-error);margin-left:2px}
+input,select,textarea{font:15px var(--font);color:var(--color-text);background:var(--color-surface);border:1px solid var(--color-border-field);border-radius:8px;padding:0 12px;width:100%;height:44px}
+textarea{height:auto;min-height:100px;padding:10px 12px;resize:vertical;line-height:22px}
+input[readonly]{background:var(--color-bg);font-weight:600}
+.f.invalid input,.f.invalid select,.f.invalid textarea{border:2px solid var(--color-error);background:var(--color-error-soft)}
+.hint{font-size:13px;color:var(--color-text-muted)}.err{font-size:13px;color:var(--color-error);font-weight:500}.err:empty{display:none}
+.cond{display:none}.cond.show{display:flex}
+.selrow{display:flex;gap:8px}.selrow select{flex:1;min-width:0}.plus{width:44px;padding:0;font-size:22px;line-height:1;flex:none}
+#dlgM{width:min(94vw,640px)}
+.money{position:relative}.money span{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--color-text-muted);pointer-events:none}.money input{padding-left:38px;font-variant-numeric:tabular-nums}
+.bar{display:flex;height:10px;border-radius:99px;overflow:hidden;background:var(--color-bg);margin-top:4px}.bar i{display:block;transition:width .25s}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:13px;color:var(--color-text-muted);margin-top:6px}.legend b{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{display:inline-flex;align-items:center;min-height:40px;border:1px solid var(--color-border-field);border-radius:999px;padding:0 16px;cursor:pointer;color:var(--color-text);font-weight:500;position:relative}
+.chip input{position:absolute;opacity:0;width:100%;height:100%;inset:0;margin:0;cursor:pointer}.chip:has(input:checked){background:var(--color-primary);border-color:var(--color-primary);color:#fff}
+.rows{list-style:none;margin:0 0 16px;padding:0;border:1px solid var(--color-border);border-radius:8px}.rows:empty{display:none}
+.rows li{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;padding:10px 14px;min-height:56px}.rows li+li{border-top:1px solid var(--color-border)}
+.rows .nm{flex:1 1 220px;min-width:0;overflow-wrap:anywhere}.rows .nm b{display:block;color:var(--color-text)}.rows .nm small{color:var(--color-text-muted)}
+.stages{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px}.stages .pill.cur{background:var(--color-primary);color:#fff;border-color:var(--color-primary)}.stages .pill.past{background:var(--color-secondary-soft);color:var(--color-secondary);border-color:transparent}
+.banner{display:none;gap:12px;align-items:center;flex-wrap:wrap;padding:12px 16px;border-radius:8px;background:var(--color-warning-soft);color:var(--color-warning-text);margin-bottom:16px;font-weight:500}.banner.show{display:flex}
+fieldset{border:0;margin:0;padding:0;min-width:0}
+.sticky-bar{position:sticky;bottom:0;z-index:10;display:flex;flex-wrap:wrap;gap:12px;justify-content:flex-end;padding:12px var(--page-gutter) calc(12px + env(safe-area-inset-bottom,0px));margin:16px calc(var(--page-gutter) * -1) 0;background:var(--color-surface);border-top:1px solid var(--color-border)}
+.sticky-bar .btn{flex:1 1 140px}@media (min-width:640px){.sticky-bar .btn{flex:0 0 auto}}@media (min-width:1024px){.sticky-bar{margin-inline:-32px;padding-inline:32px}}
+dialog{border:0;padding:0;border-radius:12px;box-shadow:0 20px 40px -8px rgba(15,23,42,.35);width:min(92vw,480px);background:var(--color-surface);color:var(--color-text-body)}dialog::backdrop{background:rgba(15,23,42,.55)}
+dialog form{padding:20px;display:flex;flex-direction:column;gap:14px}dialog h2{margin:0;font-size:18px;color:var(--color-text)}
+.dacts{display:flex;flex-direction:column-reverse;gap:8px}@media (min-width:480px){.dacts{flex-direction:row;justify-content:flex-end}}
+.toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%);max-width:min(92vw,440px);background:var(--color-text);color:var(--color-bg);padding:12px 16px;border-radius:8px;font-size:14px;z-index:90}.toast[hidden]{display:none}
+.hist{list-style:none;margin:0;padding:0}.hist li{padding:10px 0;border-bottom:1px solid var(--color-border);display:flex;flex-wrap:wrap;gap:4px 16px}.hist li:last-child{border:0}.hist time{color:var(--color-text-muted);font-size:13px;font-variant-numeric:tabular-nums;flex:none;min-width:110px}
+@media (max-width:640px){.who label{display:none}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Ir para o conteúdo</a>
+<div class="app" id="app">
+<aside class="side" id="side" aria-label="Menu principal">
+  <div class="side-brand"><span class="logo">I</span><div><span class="nm">INTEGRA</span><small>Gestão de projetos</small></div><button class="icon-btn side-close" type="button" data-close-menu aria-label="Fechar menu">×</button></div>
+  <nav class="nav" aria-label="Módulos"><h2>Projetos</h2>
+    <a href="#main" aria-current="page">Cadastro de projeto</a><a href="#main">Metas e metodologia</a><a href="#main">Planilha financeira</a>
+    <h2>Outros módulos</h2><span class="soon">Financeiro <em>em breve</em></span></nav>
+  <div class="side-foot">Protótipo de referência</div>
+</aside>
+<div class="scrim" hidden></div>
+<div class="main-col">
+<header class="top">
+  <button class="icon-btn menu-btn" type="button" aria-expanded="false" aria-controls="side" aria-label="Abrir menu">☰</button><span class="brand-sm">INTEGRA</span>
+  <div class="who"><label for="perfil">Ver como</label>
+    <select id="perfil"><option>Projetos (máxima)</option><option>Projetos (padrão)</option><option>Financeiro</option><option>Coordenação</option></select><span class="avatar" aria-hidden="true">AR</span></div>
+</header>
+<main id="main">
+  <div class="page-head">
+    <div><h1>Novo projeto</h1><div class="pills"><span class="pill info" id="pEtapa">Etapa: Celebração</span><span class="pill warn" id="pCad">Rascunho</span><span class="pill danger" id="pAtr" hidden>Atrasado</span></div></div>
+    <div class="pills"><button class="btn sm" type="button" id="bAdv">Avançar etapa</button><button class="btn sm link" type="button" id="bHist">Visualizar histórico</button></div>
+  </div>
+  <div class="stages" id="stages" aria-label="Etapas do projeto"></div>
+
+  <div class="banner" id="banner"><span id="banTxt">Este perfil só consulta o cadastro.</span><button class="btn sm" type="button" id="bReq">Solicitar reprogramação</button></div>
+
+  <div class="metrics">
+    <div class="panel metric"><span>Valor global vigente</span><b id="mG">R$ 0,00</b><small id="mGs">Sem aditivos aprovados</small></div>
+    <div class="panel metric"><span>Término vigente</span><b id="mV">Não informado</b><small id="mVs">Informe início e término</small></div>
+    <div class="panel metric"><span>Obrigatórios preenchidos</span><b id="mR">0 de 0</b><small>Exigidos para finalizar</small></div>
+    <div class="panel metric"><span>Beneficiários previstos</span><b>Das metas</b><small>Somados nas metas de atendimento</small></div>
+  </div>
+  <ul class="miss" id="miss" aria-label="Campos obrigatórios pendentes"></ul>
+
+  <fieldset id="form">
+  <section class="panel panel-pad" id="s1"><h2>Identificação do instrumento</h2><p class="desc">Campos com <span class="req">*</span> são exigidos para finalizar. Para salvar o rascunho, basta o nome.</p>
+    <div class="pills" style="margin:-6px 0 14px;align-items:center"><button class="btn sm" type="button" id="bMan">Gerenciar listas de cadastro</button><span class="hint" id="catHint"></span></div>
+    <div class="grid3">
+      <div class="f span3"><label for="nome">Nome do projeto<span class="req">*</span></label><input id="nome" autocomplete="off"><small class="err"></small></div>
+      <div class="f"><label for="tipo">Tipo de instrumento<span class="req">*</span></label><div class="selrow"><select id="tipo"></select><button class="btn plus" type="button" data-new="tipo" aria-label="Cadastrar novo tipo de instrumento" title="Cadastrar novo tipo de instrumento">+</button></div><small class="err"></small></div>
+      <div class="f"><label for="conc">Concedente<span class="req">*</span></label><div class="selrow"><select id="conc"><option value="">Selecione</option></select><button class="btn plus" type="button" data-new="conc" aria-label="Cadastrar novo concedente" title="Cadastrar novo concedente">+</button></div><small class="hint" id="esf">A esfera aparece ao escolher.</small><small class="err"></small></div>
+      <div class="f"><label for="cnpj">CNPJ do concedente</label><input id="cnpj" readonly placeholder="Preenchido pelo concedente"></div>
+      <div class="f"><label for="num">Número do instrumento<span class="req">*</span></label><input id="num" inputmode="numeric" autocomplete="off"><small class="err"></small></div>
+      <div class="f"><label for="ano">Ano do instrumento<span class="req">*</span></label><input id="ano" inputmode="numeric" maxlength="4" placeholder="2026"><small class="hint">Concedente, número e ano formam a chave única.</small><small class="err"></small></div>
+      <div class="f"><label for="proc">Número do processo</label><input id="proc" autocomplete="off"></div>
+      <div class="f"><label for="prog">Programa</label><input id="prog" autocomplete="off"></div>
+      <div class="f cond" id="gEm"><label for="emenda">Número da emenda<span class="req">*</span></label><input id="emenda"><small class="err"></small></div>
+      <div class="f cond" id="gPr"><label for="proto">Protocolo no Transferegov</label><input id="proto"></div>
+      <div class="f"><label for="unid">Unidade responsável</label><div class="selrow"><select id="unid"></select><button class="btn plus" type="button" data-new="unid" aria-label="Cadastrar nova unidade responsável" title="Cadastrar nova unidade responsável">+</button></div><small class="err"></small></div>
+      <div class="f"><label for="resp">Responsável pelo projeto<span class="req">*</span></label><div class="selrow"><select id="resp"></select><button class="btn plus" type="button" data-new="resp" aria-label="Cadastrar novo responsável" title="Cadastrar novo responsável">+</button></div><small class="err"></small></div>
+      <div class="f"><label for="stat">Situação</label><select id="stat"><option>Ativo</option><option>Suspenso</option><option>Cancelado</option></select><small class="hint">Mudar a situação exige justificativa.</small></div>
+    </div></section>
+
+  <section class="panel panel-pad" id="s2"><h2>Valores</h2><p class="desc">O valor global é calculado: repasse mais as duas contrapartidas. Rendimentos de aplicação ficam à parte.</p>
+    <div class="grid3">
+      <div class="f"><label for="rep">Valor do repasse<span class="req">*</span></label><div class="money"><span>R$</span><input id="rep" inputmode="numeric" placeholder="0,00"></div><small class="err"></small></div>
+      <div class="f"><label for="cf">Contrapartida financeira</label><div class="money"><span>R$</span><input id="cf" inputmode="numeric" placeholder="0,00"></div></div>
+      <div class="f"><label for="cb">Contrapartida em bens e serviços</label><div class="money"><span>R$</span><input id="cb" inputmode="numeric" placeholder="0,00"></div><small class="hint">Valorada depois, com comprovação.</small></div>
+      <div class="f"><label for="rend">Rendimentos de aplicação</label><div class="money"><span>R$</span><input id="rend" inputmode="numeric" placeholder="0,00"></div></div>
+      <div class="f span2"><span class="lbl">Composição do valor global</span><div class="bar" id="bar" role="img" aria-label="Composição do valor global"><i style="background:var(--c1)"></i><i style="background:var(--c2)"></i><i style="background:var(--c3)"></i></div>
+        <div class="legend"><span><b style="background:var(--c1)"></b>Repasse <span id="p1">0%</span></span><span><b style="background:var(--c2)"></b>Financeira <span id="p2">0%</span></span><span><b style="background:var(--c3)"></b>Bens e serviços <span id="p3">0%</span></span></div></div>
+      <div class="f"><label for="banco">Banco</label><input id="banco"></div><div class="f"><label for="ag">Agência</label><input id="ag" inputmode="numeric"></div><div class="f"><label for="cc">Conta específica</label><input id="cc"></div>
+    </div></section>
+
+  <section class="panel panel-pad" id="s3"><h2>Vigência</h2><p class="desc">Início e término são exigidos para finalizar, não para salvar o rascunho.</p>
+    <div class="grid3">
+      <div class="f"><label for="ass">Data de assinatura</label><input type="date" id="ass"></div>
+      <div class="f"><label for="ini">Data de início<span class="req">*</span></label><input type="date" id="ini"><small class="err"></small></div>
+      <div class="f"><label for="fim">Data de término original<span class="req">*</span></label><input type="date" id="fim"><small class="err"></small></div>
+      <div class="f span3"><span class="lbl">Vigência calculada</span><div class="pills"><span class="pill" id="vig">Informe início e término</span><span class="pill" id="vAl" hidden></span></div></div>
+    </div></section>
+
+  <section class="panel panel-pad" id="s4"><h2>Aditivos</h2><p class="desc">Prorrogações e mudanças de valor. Só aditivos aprovados alteram o prazo e o valor vigentes.</p>
+    <ul class="rows" id="adList"></ul>
+    <div class="grid3">
+      <div class="f"><label for="adT">Tipo</label><select id="adT"><option>Prazo</option><option>Valor</option><option>Prazo e valor</option></select></div>
+      <div class="f" id="gAdD"><label for="adD">Novo término</label><input type="date" id="adD"></div>
+      <div class="f cond" id="gAdV"><label for="adV">Acréscimo de valor</label><div class="money"><span>R$</span><input id="adV" inputmode="numeric" placeholder="0,00"></div></div>
+      <div class="f"><label for="adDt">Data do aditivo</label><input type="date" id="adDt"></div>
+      <div class="f span2"><label for="adW">Justificativa</label><input id="adW" autocomplete="off"></div>
+      <div class="f span3"><small class="err" id="adE"></small><div><button class="btn" type="button" id="bAd">Registrar aditivo</button></div></div>
+    </div></section>
+
+  <section class="panel panel-pad" id="s5"><h2>Objeto e público</h2><p class="desc">O objeto é cadastrado só aqui. Metas e metodologia ficam na próxima tela.</p>
+    <div class="grid3">
+      <div class="f span3"><label for="obj">Objeto<span class="req">*</span></label><textarea id="obj" maxlength="800"></textarea><small class="hint"><span id="cnt">0</span>/800 caracteres</small><small class="err"></small></div>
+      <div class="f span2"><label for="pub">Público-alvo<span class="req">*</span></label><input id="pub" autocomplete="off"><small class="err"></small></div>
+      <div class="f"><label for="benef">Beneficiários previstos</label><input id="benef" readonly value="Definido nas metas"></div>
+      <div class="f span3"><label for="obs">Observações</label><textarea id="obs"></textarea></div>
+    </div></section>
+
+  <section class="panel panel-pad" id="s6"><h2>Localização<span class="req">*</span></h2><p class="desc">Marque todos os municípios atendidos.</p>
+    <div class="f"><div class="chips" id="muns" role="group" aria-label="Municípios"></div><div><button class="btn sm" type="button" data-new="mun">+ Cadastrar município</button></div><small class="err" id="munE"></small></div></section>
+  </fieldset>
+
+  <section class="panel panel-pad" id="sh"><h2>Histórico do projeto</h2><p class="desc">Alterações de valor, prazo, responsável e situação ficam registradas com justificativa.</p><ul class="hist" id="hist"></ul></section>
+
+  <div class="sticky-bar" id="bar2"><button class="btn" type="button" id="bCancel">Cancelar</button><button class="btn" type="button" id="bSave">Salvar</button><button class="btn" type="button" id="bCont">Salvar e continuar</button><button class="btn primary" type="button" id="bFin">Finalizar cadastro</button></div>
+</main></div></div>
+
+<dialog id="dlg"><form method="dialog" id="dForm"><h2 id="dT">Justificativa</h2><p id="dP" class="hint"></p>
+  <div class="f" id="dF"><label for="dW">Justificativa<span class="req">*</span></label><textarea id="dW"></textarea><small class="err" id="dE"></small></div>
+  <div class="dacts"><button class="btn" type="button" id="dNo">Voltar</button><button class="btn primary" type="submit">Confirmar</button></div></form></dialog>
+<dialog id="dlgM"><form method="dialog"><h2>Gerenciar listas de cadastro</h2>
+  <p class="hint">Itens inativos saem das listas de novos cadastros, mas continuam valendo nos projetos já cadastrados. Municípios que não estão em uso em nenhum projeto também podem ser apagados.</p>
+  <div class="f"><label for="mK">Lista</label><select id="mK"><option value="tipo">Tipos de instrumento</option><option value="conc">Concedentes</option><option value="unid">Unidades responsáveis</option><option value="resp">Responsáveis pelo projeto</option><option value="mun">Municípios (localização)</option></select></div>
+  <ul class="rows" id="mList"></ul>
+  <div class="dacts"><button class="btn" type="button" id="mAdd">Cadastrar novo</button><button class="btn primary" type="submit">Fechar</button></div></form></dialog>
+<dialog id="dlgN"><form method="dialog" id="nForm"><h2 id="nT">Cadastrar</h2>
+  <div class="f"><label for="nN" id="nL">Nome</label><input id="nN" autocomplete="off"></div>
+  <div id="nExtra" class="grid2"><div class="f"><label for="nE">Esfera</label><select id="nE"><option value="">Selecione</option><option>Federal</option><option>Estadual</option><option>Municipal</option><option>Privada</option></select></div><div class="f"><label for="nC">CNPJ</label><input id="nC" inputmode="numeric" placeholder="00.000.000/0000-00"></div></div>
+  <div class="f" id="nEmW"><label class="lbl"><input type="checkbox" id="nEm" style="width:auto;height:auto;margin-right:8px">Exige número da emenda</label></div>
+  <div class="f" id="nUfW" style="display:none"><label for="nUf">UF</label><select id="nUf"></select></div>
+  <div class="f" id="nMailW" style="display:none"><label for="nMail">E-mail</label><input id="nMail" type="email" autocomplete="off"><small class="hint">Recebe as notificações dos projetos atribuídos.</small></div>
+  <small class="err" id="nEr"></small>
+  <div class="dacts"><button class="btn" type="button" id="nNo">Voltar</button><button class="btn primary" type="submit" id="nOk">Cadastrar</button></div></form></dialog>
+<div class="toast" id="toast" role="status" hidden></div>
+
+<script>
+(function(){
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const CONC={"Ministério do Esporte":["Federal","00.394.829/0001-01"],"Secretaria Estadual de Esporte":["Estadual","12.345.678/0001-90"],"Secretaria Municipal de Esporte":["Municipal","98.765.432/0001-10"],"Instituto Parceiro (privado)":["Privada","45.678.123/0001-55"]};
+const MUNS=[["São Paulo","SP"],["Belo Horizonte","MG"],["Fortaleza","CE"],["Salvador","BA"],["Curitiba","PR"],["Porto Alegre","RS"],["Goiânia","GO"],["Manaus","AM"]].map(([m,u])=>({n:m+"/"+u,m,u,a:1}));
+const USO={"Fortaleza/CE":2,"Salvador/BA":1};
+const UFS="AC AL AP AM BA CE DF ES GO MA MT MS MG PA PB PR PE PI RJ RN RS RO RR SC SP SE TO".split(" ");
+$("#nUf").innerHTML='<option value="">Selecione</option>'+UFS.map(u=>"<option>"+u+"</option>").join("");
+const selMuns=()=>$$("#muns input:checked").map(i=>i.value);
+const usoDe=n=>(USO[n]||0)+(selMuns().includes(n)?1:0);
+function renderMuns(sel){sel=sel||selMuns();$("#muns").innerHTML=MUNS.filter(x=>x.a||sel.includes(x.n)).map(x=>'<label class="chip"><input type="checkbox" value="'+esc(x.n)+'"'+(sel.includes(x.n)?" checked":"")+">"+esc(x.n)+(x.a?"":" (inativo)")+"</label>").join("");calc()}
+function subMun(){const er=$("#nEr"),m=$("#nN").value.trim().replace(/\s+/g," "),u=$("#nUf").value;er.textContent="";
+  if(!m){er.textContent="Informe o nome do município.";return}if(!u){er.textContent="Escolha a UF.";return}
+  const n=m+"/"+u;if(MUNS.some(x=>x.n!==ed&&x.n.toLowerCase()===n.toLowerCase())){er.textContent="Esse município já está cadastrado. Se estiver inativo, ative-o em Gerenciar.";return}
+  let sel=selMuns();
+  if(ed){const x=MUNS.find(y=>y.n===ed);if(USO[ed]!==undefined&&n!==ed){USO[n]=USO[ed];delete USO[ed]}sel=sel.map(s=>s===ed?n:s);x.n=n;x.m=m;x.u=u}
+  else{MUNS.push({n,m,u,a:1});sel.push(n)}
+  renderMuns(sel);setErr("muns","");nd.close();renderMan();say(ed?"Município atualizado.":"Município cadastrado e selecionado.")}
+const TIPOS=[{n:"Convênio",a:1},{n:"Termo de fomento",a:1},{n:"Termo de colaboração",a:1},{n:"Contrato de patrocínio",a:1},{n:"Emenda parlamentar",a:1,em:1}];
+const esc=s=>String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/"/g,"&quot;");
+const isEm=()=>{const t=TIPOS.find(x=>x.n===$("#tipo").value);return !!(t&&t.em)};
+const UNIDS=[{n:"Coordenação de Esportes",a:1},{n:"Coordenação Social",a:1},{n:"Administrativo",a:1}];
+const RESPS=[{n:"Ana Ribeiro",a:1,e:"ana.ribeiro@instituicao.org"},{n:"Carlos Mendes",a:1,e:"carlos.mendes@instituicao.org"},{n:"Juliana Prado",a:1,e:"juliana.prado@instituicao.org"}];
+const LISTS={tipo:TIPOS,unid:UNIDS,resp:RESPS,mun:MUNS},RT={tipo:"tipo de instrumento",conc:"concedente",unid:"unidade responsável",resp:"responsável",mun:"município"};
+function fillP(k){const s=$("#"+k),v=s.value;s.innerHTML='<option value="">Selecione</option>'+LISTS[k].filter(x=>x.a||x.n===v).map(x=>'<option value="'+esc(x.n)+'">'+esc(x.n)+(x.a?"":" (inativo)")+"</option>").join("");s.value=v}
+function fillSel(){const t=$("#tipo"),c=$("#conc"),tv=t.value,cv=c.value,o=(n,a)=>'<option value="'+esc(n)+'">'+esc(n)+(a?"":" (inativo)")+"</option>";
+  t.innerHTML='<option value="">Selecione</option>'+TIPOS.filter(x=>x.a||x.n===tv).map(x=>o(x.n,x.a)).join("");
+  c.innerHTML='<option value="">Selecione</option>'+Object.keys(CONC).filter(n=>CONC[n][2]!==0||n===cv).map(n=>o(n,CONC[n][2]!==0)).join("");t.value=tv;c.value=cv;fillP("unid");fillP("resp")}
+const ETAPAS=["Celebração","Estruturação","Execução","Prestação de contas","Encerramento"];
+const EXISTE=["ministério do esporte|912345|2025"];
+const REQ=[["nome","Nome do projeto",1],["tipo","Tipo de instrumento",1],["conc","Concedente",1],["num","Número",1],["ano","Ano",1],["resp","Responsável",1],["rep","Repasse",2],["ini","Início",3],["fim","Término",3],["obj","Objeto",5],["pub","Público-alvo",5],["muns","Municípios",6]];
+const REL=[["rep","Valor do repasse"],["cf","Contrapartida financeira"],["cb","Contrapartida em bens e serviços"],["ini","Data de início"],["fim","Data de término"],["resp","Responsável"],["conc","Concedente"]];
+let saved=false,final=false,etapa=0,snap={},ads=[],hist=[],statAnt="Ativo";
+
+
+
+const num=v=>{const n=parseFloat(String(v||"").replace(/\./g,"").replace(",","."));return isNaN(n)?0:n};
+const brl=n=>n.toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
+const dt=s=>s?new Date(s+"T00:00").toLocaleDateString("pt-BR"):"";
+const val=id=>id==="muns"?($$("#muns input:checked").length?"ok":""):($("#"+id).value||"").trim();
+function say(m){const t=$("#toast");t.textContent=m;t.hidden=false;clearTimeout(say.t);say.t=setTimeout(()=>t.hidden=true,4000)}
+function mask(el){const d=el.value.replace(/\D/g,"");el.value=d?(parseInt(d,10)/100).toLocaleString("pt-BR",{minimumFractionDigits:2}):""}
+function setErr(id,m){if(id==="muns"){$("#munE").textContent=m||"";return}const f=$("#"+id).closest(".f");f.classList.toggle("invalid",!!m);f.querySelector(".err").textContent=m||""}
+function log(t,why){const d=new Date();hist.unshift({t:d.toLocaleDateString("pt-BR")+" "+d.toLocaleTimeString("pt-BR",{hour:"2-digit",minute:"2-digit"}),x:t,w:why,u:$("#perfil").value});renderHist()}
+function renderHist(){$("#hist").innerHTML=hist.length?hist.map(h=>"<li><time>"+h.t+"</time><span><b>"+h.x+"</b>"+(h.w?"<br><span class=hint>Justificativa: "+h.w.replace(/</g,"&lt;")+"</span>":"")+'<br><span class=hint>Por '+h.u+"</span></span></li>").join(""):'<li><span class="hint">O histórico começa no primeiro salvamento.</span></li>'}
+function efetivos(){const ap=ads.filter(a=>a.ok);let g=num($("#rep").value)+num($("#cf").value)+num($("#cb").value),fim=$("#fim").value;
+  ap.forEach(a=>{g+=a.v;if(a.d&&(!fim||a.d>fim))fim=a.d});return{g,fim,n:ap.length}}
+function reqList(){const l=[...REQ];if(isEm())l.push(["emenda","Número da emenda",1]);return l}
+function calc(){
+  const r=num($("#rep").value),a=num($("#cf").value),b=num($("#cb").value),base=r+a+b,E=efetivos();
+  $("#mG").textContent=brl(E.g);$("#mGs").textContent=E.n?E.n+" aditivo(s) aprovado(s) incluído(s)":"Sem aditivos aprovados";
+  [r,a,b].forEach((v,i)=>{const p=base?v/base*100:0;$("#bar").children[i].style.width=p+"%";$("#p"+(i+1)).textContent=Math.round(p)+"%"});
+  const c=$("#conc").value;$("#esf").textContent=c?"Esfera: "+CONC[c][0]:"A esfera aparece ao escolher.";$("#cnpj").value=c?CONC[c][1]:"";
+  $("#gEm").classList.toggle("show",isEm());$("#gPr").classList.toggle("show",c&&CONC[c][0]==="Federal");
+  const s=$("#ini").value,e=$("#fim").value,v=$("#vig"),al=$("#vAl");al.hidden=true;$("#pAtr").hidden=true;v.className="pill";
+  if(s&&e){if(e<s){v.textContent="Término anterior ao início";v.className="pill danger"}else{
+    const d1=new Date(s+"T00:00"),d2=new Date(e+"T00:00"),dias=Math.round((d2-d1)/864e5)+1,m=(d2.getFullYear()-d1.getFullYear())*12+d2.getMonth()-d1.getMonth();v.textContent=dias+" dias (cerca de "+m+" meses)"}
+    const ef=new Date(E.fim+"T00:00"),h=new Date();h.setHours(0,0,0,0);const rest=Math.ceil((ef-h)/864e5);
+    $("#mV").textContent=dt(E.fim);$("#mVs").textContent=rest<0?"Vigência encerrada":"Faltam "+rest+" dias";
+    if(rest<0&&etapa<4){$("#pAtr").hidden=false}else if(rest>=0&&rest<=90){al.textContent="Término em "+rest+" dias";al.className="pill warn";al.hidden=false}
+  }else{v.textContent="Informe início e término";$("#mV").textContent="Não informado";$("#mVs").textContent="Informe início e término"}
+  $("#cnt").textContent=$("#obj").value.length;
+  const L=reqList(),f=L.filter(([id])=>!val(id));$("#mR").textContent=(L.length-f.length)+" de "+L.length;
+  $("#miss").innerHTML=f.map(([id,l])=>'<li><button type="button" data-f="'+id+'">'+l+"</button></li>").join("");
+  const t=$("#adT").value;$("#gAdD").style.display=t==="Valor"?"none":"";$("#gAdV").classList.toggle("show",t!=="Prazo");
+  $("#stages").innerHTML=ETAPAS.map((n,i)=>'<span class="pill '+(i===etapa?"cur":i<etapa?"past":"")+'">'+n+"</span>").join("");
+  $("#pEtapa").textContent="Etapa: "+ETAPAS[etapa];$("#bAdv").disabled=!final||etapa>3;
+}
+function validate(full){let first=null;const bad=(id,m)=>{setErr(id,m);first=first||id};
+  REQ.concat([["emenda"]]).forEach(([id])=>{if(id!=="muns"&&$("#"+id))setErr(id,"")});setErr("muns","");
+  if(!val("nome"))bad("nome","Informe o nome do projeto.");
+  if(EXISTE.includes([$("#conc").value,$("#num").value.trim(),$("#ano").value.trim()].join("|").toLowerCase()))bad("num","Já existe projeto com este número, concedente e ano.");
+  if(full){reqList().forEach(([id])=>{if(id!=="nome"&&!val(id))bad(id,id==="muns"?"Marque ao menos um município.":"Preencha este campo.")});
+    if($("#ano").value&&!/^\d{4}$/.test($("#ano").value))bad("ano","Use quatro dígitos, por exemplo 2026.");
+    if($("#ini").value&&$("#fim").value&&$("#fim").value<$("#ini").value)bad("fim","O término deve ser depois do início.")}
+  if(first){const el=first==="muns"?$("#muns input"):$("#"+first);el.scrollIntoView({block:"center"});el.focus()}return !first}
+function ask(t,p,cb){$("#dT").textContent=t;$("#dP").textContent=p;$("#dW").value="";$("#dE").textContent="";$("#dlg").showModal();$("#dW").focus();ask.cb=cb}
+$("#dNo").onclick=()=>{$("#dlg").close();ask.cb=null;$("#stat").value=statAnt};
+$("#dForm").addEventListener("submit",e=>{e.preventDefault();const w=$("#dW").value.trim();if(!w){$("#dE").textContent="Informe a justificativa para continuar.";return}$("#dlg").close();const c=ask.cb;ask.cb=null;c&&c(w)});
+function shot(){const o={};REL.forEach(([id])=>o[id]=$("#"+id).value);return o}
+function save(done){if(!validate(false)){say("Corrija o campo destacado para salvar.");return}
+  const df=saved?REL.filter(([id])=>snap[id]!==$("#"+id).value):[];
+  const go=w=>{if(!saved)log("Projeto criado");df.forEach(([id,l])=>log(l+" alterado: "+(snap[id]||"vazio")+" para "+($("#"+id).value||"vazio"),w));snap=shot();saved=true;
+    $("#pCad").textContent=final?"Cadastro finalizado":"Rascunho salvo";$("#pCad").className="pill "+(final?"ok":"info");say("Salvo. O histórico foi atualizado.");done&&done()};
+  df.length?ask("Justifique as alterações",df.map(d=>d[1]).join(", ")+".",go):go()}
+function perfil(){const p=$("#perfil").value,ro=p==="Financeiro"||p==="Coordenação",mx=p==="Projetos (máxima)";$("#form").disabled=ro;$$("[data-new]").forEach(b=>{b.disabled=!mx;b.title=mx?"Cadastrar novo":"Somente quem tem permissão máxima de projeto pode cadastrar"});$("#bMan").style.display=mx?"":"none";$("#catHint").textContent=mx?"":"Novos cadastros nessas listas só podem ser feitos por quem tem permissão máxima de projeto.";$("#bar2").style.display=ro?"none":"";$("#bAd").disabled=ro;
+  $("#banner").classList.toggle("show",ro);$("#banTxt").textContent=p==="Financeiro"?"Perfil Financeiro: o cadastro é só para consulta. Para mudar valores ou itens, peça uma reprogramação ao setor de Projetos.":"Perfil Coordenação: o cadastro é só para consulta.";$("#bReq").style.display=p==="Financeiro"?"":"none"}
+function renderAds(){$("#adList").innerHTML=ads.map((a,i)=>'<li><div class="nm"><b>Aditivo '+(i+1)+": "+a.t+"</b><small>"+dt(a.dt)+(a.d?", novo término "+dt(a.d):"")+(a.v?", acréscimo de "+brl(a.v):"")+" — "+a.w.replace(/</g,"&lt;")+'</small></div><span class="pill '+(a.ok?"ok":"warn")+'">'+(a.ok?"Aprovado":"Pendente de aprovação")+"</span>"+(a.ok?"":'<button class="btn sm" type="button" data-ap="'+i+'">Aprovar</button>')+"</li>").join("");calc()}
+
+document.addEventListener("input",e=>{if(e.target.closest(".money"))mask(e.target);if(e.target.id==="ano")e.target.value=e.target.value.replace(/\D/g,"");const f=e.target.closest(".f");f&&f.classList.remove("invalid");calc()});
+document.addEventListener("change",e=>{if(e.target.id==="stat"){const n=e.target.value;if(n!==statAnt)ask("Mudar situação para "+n,"A mudança fica registrada no histórico.",w=>{log("Situação alterada: "+statAnt+" para "+n,w);statAnt=n;say("Situação atualizada.")})}calc()});
+document.addEventListener("click",e=>{const f=e.target.closest("[data-f]"),a=e.target.closest("[data-ap]");
+  if(f){const el=f.dataset.f==="muns"?$("#muns input"):$("#"+f.dataset.f);el.scrollIntoView({block:"center"});el.focus()}
+  if(a){const x=ads[+a.dataset.ap];x.ok=true;log("Aditivo aprovado: "+x.t);renderAds();say("Aditivo aprovado. Prazo e valor vigentes atualizados.")}});
+$("#bAd").onclick=()=>{const t=$("#adT").value,d=$("#adD").value,v=num($("#adV").value),dd=$("#adDt").value,w=$("#adW").value.trim(),E=$("#adE");E.textContent="";
+  if(!saved){E.textContent="Salve o rascunho antes de registrar um aditivo.";return}
+  if(t!=="Valor"&&!d){E.textContent="Informe o novo término.";return}if(t!=="Prazo"&&!v){E.textContent="Informe o acréscimo de valor.";return}
+  if(t!=="Valor"&&d<=efetivos().fim){E.textContent="O novo término deve ser posterior ao término vigente.";return}
+  if(!dd||!w){E.textContent="Informe a data e a justificativa do aditivo.";return}
+  ads.push({t,d:t==="Valor"?"":d,v:t==="Prazo"?0:v,dt:dd,w,ok:false});log("Aditivo registrado: "+t,w);["adD","adV","adDt","adW"].forEach(i=>$("#"+i).value="");renderAds();say("Aditivo registrado como pendente de aprovação.")};
+$("#bSave").onclick=()=>save();
+$("#bCont").onclick=()=>save(()=>setTimeout(()=>say("Seguindo para Metas e metodologia."),900));
+$("#bFin").onclick=()=>{if(!validate(true)){say("Faltam campos obrigatórios. Veja os atalhos acima.");return}save(()=>{final=true;log("Cadastro finalizado");$("#pCad").textContent="Cadastro finalizado";$("#pCad").className="pill ok";calc()})};
+$("#bCancel").onclick=()=>{if(confirm("Descartar as alterações deste cadastro?"))location.reload()};
+$("#bAdv").onclick=()=>{if(etapa===0){etapa=1;log("Etapa avançou para Estruturação");calc();say("Projeto em Estruturação.")}else say("Disponível quando o checklist da etapa estiver concluído.")};
+$("#bHist").onclick=()=>$("#sh").scrollIntoView({behavior:"smooth"});
+$("#bReq").onclick=()=>{log("Solicitação de reprogramação aberta pelo Financeiro");say("Solicitação enviada. Ela vira pendência para o setor de Projetos.")};
+$("#perfil").onchange=perfil;
+// menu lateral
+const app=$("#app"),mb=$(".menu-btn"),sc=$(".scrim"),wide=matchMedia("(min-width:1024px)");
+function menu(o){app.classList.toggle("menu-open",o);document.body.style.overflow=o&&!wide.matches?"hidden":"";sc.hidden=!o;mb.setAttribute("aria-expanded",o);if(o)$("#side a").focus();else mb.focus()}
+mb.onclick=()=>menu(true);sc.onclick=()=>menu(false);$$("[data-close-menu]").forEach(b=>b.onclick=()=>menu(false));wide.addEventListener("change",()=>menu(false));
+document.addEventListener("keydown",e=>{if(e.key==="Escape"&&app.classList.contains("menu-open"))menu(false)});
+// cadastro rápido de tipo de instrumento e concedente
+let nk=null,ed=null;const nd=$("#dlgN");
+function cnpjMask(v){const d=v.replace(/\D/g,"").slice(0,14);let o=d.slice(0,2);if(d.length>2)o+="."+d.slice(2,5);if(d.length>5)o+="."+d.slice(5,8);if(d.length>8)o+="/"+d.slice(8,12);if(d.length>12)o+="-"+d.slice(12);return o}
+function openNew(k,item){nk=k;ed=item||null;const c=k==="conc";$("#nT").textContent=(ed?"Editar ":"Cadastrar ")+RT[k];$("#nOk").textContent=ed?"Salvar":"Cadastrar";$("#nL").textContent="Nome";$("#nExtra").style.display=c?"":"none";$("#nEmW").style.display=k==="tipo"?"":"none";$("#nMailW").style.display=k==="resp"?"":"none";$("#nUfW").style.display=k==="mun"?"":"none";["nN","nC","nE","nUf"].forEach(i=>$("#"+i).value="");$("#nEm").checked=false;$("#nMail").value="";
+  if(ed){$("#nN").value=ed;if(c){$("#nE").value=CONC[ed][0];$("#nC").value=CONC[ed][1]}else{const x=LISTS[k].find(y=>y.n===ed);$("#nEm").checked=!!x.em;$("#nMail").value=x.e||"";if(k==="mun"){$("#nN").value=x.m;$("#nUf").value=x.u}}}
+  $("#nEr").textContent="";nd.showModal();$("#nN").focus()}
+$$("[data-new]").forEach(b=>b.onclick=()=>openNew(b.dataset.new));
+$("#nC").addEventListener("input",e=>{e.target.value=cnpjMask(e.target.value)});
+$("#nNo").onclick=()=>nd.close();
+$("#nForm").addEventListener("submit",e=>{e.preventDefault();if(nk==="mun"){subMun();return}const n=$("#nN").value.trim().replace(/\s+/g," "),c=nk==="conc",er=$("#nEr");er.textContent="";
+  if(!n){er.textContent="Informe o nome.";return}
+  const ex=(c?Object.keys(CONC):LISTS[nk].map(x=>x.n)).filter(x=>x!==ed);
+  if(ex.some(x=>x.toLowerCase()===n.toLowerCase())){er.textContent="Já existe um cadastro com este nome. Se estiver inativo, ative-o em Gerenciar.";return}
+  if(c){if(!$("#nE").value){er.textContent="Escolha a esfera do concedente.";return}const cn=$("#nC").value;if(cn&&cn.replace(/\D/g,"").length!==14){er.textContent="O CNPJ deve ter 14 dígitos.";return}const old=ed?CONC[ed]:null;if(ed)delete CONC[ed];CONC[n]=[$("#nE").value,cn,old?old[2]:1]}
+  if(nk==="resp"&&!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test($("#nMail").value.trim())){er.textContent="Informe um e-mail válido. Ele recebe as notificações do projeto.";return}
+  if(!c){const L=LISTS[nk],x=ed?L.find(y=>y.n===ed):{a:1};x.n=n;if(nk==="tipo")x.em=$("#nEm").checked;if(nk==="resp")x.e=$("#nMail").value.trim();if(!ed)L.push(x)}
+  const cur=$("#"+nk).value;fillSel();$("#"+nk).value=ed?(cur===ed?n:cur):n;setErr(nk,"");nd.close();calc();renderMan();
+  say(ed?"Cadastro atualizado.":"Cadastro criado e selecionado.")});
+// gerenciar (editar, inativar e ativar)
+function renderMan(){const k=$("#mK").value,it=k!=="conc"?LISTS[k].map(x=>({n:x.n,a:x.a,s:x.em?"Exige número da emenda":(k==="mun"?"Em uso em "+usoDe(x.n)+" projeto(s)":(x.e||""))})):Object.keys(CONC).map(n=>({n,a:CONC[n][2]!==0,s:CONC[n][0]+(CONC[n][1]?", CNPJ "+CONC[n][1]:"")}));
+  $("#mList").innerHTML=it.map(i=>'<li><div class="nm"><b>'+esc(i.n)+"</b><small>"+esc(i.s)+'</small></div><span class="pill '+(i.a?"ok":"")+'">'+(i.a?"Ativo":"Inativo")+'</span><button class="btn sm" type="button" data-ed="'+esc(i.n)+'">Editar</button><button class="btn sm" type="button" data-tg="'+esc(i.n)+'">'+(i.a?"Inativar":"Ativar")+"</button>"+(k==="mun"?'<button class="btn sm" type="button" data-del="'+esc(i.n)+'">Apagar</button>':"")+"</li>").join("")}
+$("#bMan").onclick=()=>{renderMan();$("#dlgM").showModal()};
+$("#mK").onchange=renderMan;
+$("#mAdd").onclick=()=>{$("#dlgM").close();openNew($("#mK").value)};
+$("#mList").addEventListener("click",e=>{const b=e.target.closest("[data-ed]"),g=e.target.closest("[data-tg]"),d=e.target.closest("[data-del]"),k=$("#mK").value;
+  if(d){const n=d.dataset.del,u=usoDe(n);if(u>0){say("Não dá para apagar "+n+": está em uso em "+u+" projeto(s). Inative em vez de apagar.");return}
+    if(!confirm("Apagar "+n+"? Isso não pode ser desfeito."))return;MUNS.splice(MUNS.findIndex(x=>x.n===n),1);renderMuns();renderMan();say("Município apagado.")}
+  if(b){$("#dlgM").close();openNew(k,b.dataset.ed)}
+  if(g){const n=g.dataset.tg;let on;if(k!=="conc"){const t=LISTS[k].find(x=>x.n===n);t.a=t.a?0:1;on=!!t.a}else{CONC[n][2]=CONC[n][2]===0?1:0;on=CONC[n][2]!==0}
+    fillSel();renderMuns();renderMan();say(on?"Ativado. Volta a aparecer nas listas de novos cadastros.":"Inativado. Sai das listas novas e continua nos projetos já cadastrados.")}});
+fillSel();renderMuns();renderHist();perfil();calc();
+})();
+</script>
+</body>
+</html>
