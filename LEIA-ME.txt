@@ -1,0 +1,29 @@
+INTEGRA - Modulo "Cadastrar projeto" (prototipo)
+
+CONTEUDO
+index.html .................. modulo completo, com 3 abas: Dados do projeto; Objeto, metas e metodologia; Documentos e certidoes
+telas-separadas/ ............ as mesmas telas em arquivos individuais
+testes/teste_modulo.py ...... teste automatico (Playwright) do fluxo principal
+
+COMO ABRIR
+Abra o index.html em qualquer navegador. Nao precisa instalar nada nem estar online
+(sem internet, a tela usa a fonte padrao do sistema).
+
+COMO PUBLICAR NO GITHUB PAGES
+Suba o index.html na raiz do repositorio. Em Settings > Pages, escolha Deploy from a branch,
+branch main, pasta / (root). O endereco fica https://USUARIO.github.io/REPOSITORIO/
+
+COMO TESTAR AS PERMISSOES
+O seletor "Ver como", no topo, troca o perfil:
+- Projetos (maxima): cria e gerencia listas (botao +), aprova documentos, apaga municipios sem uso
+- Projetos (padrao): cadastra e anexa, mas nao aprova nem cria itens nas listas
+- Financeiro e Coordenacao: somente consulta
+
+COMO RODAR O TESTE
+pip install playwright && playwright install chromium
+python testes/teste_modulo.py
+
+OBSERVACOES
+- Sao prototipos: dados de demonstracao, sem banco de dados; somem ao recarregar a pagina.
+- O campo de valor trabalha em centavos (digitar 80000000 resulta em R$ 800.000,00).
+- A Planilha financeira fica para o modulo Financeiro.

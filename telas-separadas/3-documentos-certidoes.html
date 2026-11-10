@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Documentos e certidões</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&display=swap">
+<style>
+:root{--color-primary:#3730A3;--color-primary-soft:#E0E7FF;--color-secondary:#0F766E;--color-secondary-soft:#CCFBF1;--color-error:#B42318;--color-error-soft:#FEE4E2;--color-warning-soft:#FEF3C7;--color-warning-text:#7A4B00;--color-text:#0F172A;--color-text-body:#334155;--color-text-muted:#5B6B7F;--color-border:#E2E8F0;--color-border-field:#94A3B8;--color-bg:#F1F5F9;--color-surface:#fff;--focus-ring:0 0 0 3px #fff,0 0 0 5px #3730A3;--font:"Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--color-primary:#4F46E5;--color-primary-soft:#26264F;--color-secondary:#2DD4BF;--color-secondary-soft:#12403C;--color-error:#FF8A80;--color-error-soft:#3B1A18;--color-warning-soft:#3A2D10;--color-warning-text:#F2C46B;--color-text:#E8EEF5;--color-text-body:#C5D0DC;--color-text-muted:#9DB0C2;--color-border:#2B3A4A;--color-border-field:#5E7186;--color-bg:#0E1620;--color-surface:#152130;--focus-ring:0 0 0 3px #152130,0 0 0 5px #A5B4FC}}
+:root[data-theme="dark"]{color-scheme:dark;--color-primary:#4F46E5;--color-primary-soft:#26264F;--color-secondary:#2DD4BF;--color-secondary-soft:#12403C;--color-error:#FF8A80;--color-error-soft:#3B1A18;--color-warning-soft:#3A2D10;--color-warning-text:#F2C46B;--color-text:#E8EEF5;--color-text-body:#C5D0DC;--color-text-muted:#9DB0C2;--color-border:#2B3A4A;--color-border-field:#5E7186;--color-bg:#0E1620;--color-surface:#152130;--focus-ring:0 0 0 3px #152130,0 0 0 5px #A5B4FC}
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--color-bg);color:var(--color-text-body);font:15px/22px var(--font)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.skip{position:absolute;left:8px;top:-60px;background:#3730A3;color:#fff;padding:10px 14px;border-radius:8px;z-index:100}.skip:focus{top:8px}
+.app{min-height:100vh}
+.side{position:fixed;inset:0 auto 0 0;width:280px;max-width:86vw;background:#2E2A7A;color:#E2E8F0;display:flex;flex-direction:column;transform:translateX(-100%);transition:transform .2s;z-index:50;overflow-y:auto;visibility:hidden}
+.app.menu-open .side{transform:none;visibility:visible}
+.scrim{position:fixed;inset:0;background:rgba(15,23,42,.5);z-index:40}.scrim[hidden]{display:none}
+.side-brand{display:flex;align-items:center;gap:10px;padding:16px;border-bottom:1px solid rgba(255,255,255,.14)}
+.logo{width:36px;height:36px;border-radius:8px;background:#fff;color:#2E2A7A;display:grid;place-items:center;font-weight:700}
+.side-brand .nm{font-weight:700;font-size:18px;color:#fff;line-height:20px}.side-brand small{display:block;font-size:11px;color:#C7D2FE}
+.side-close{margin-left:auto;color:#fff}
+.nav{padding:12px;display:flex;flex-direction:column;gap:2px;flex:1}.nav h2{margin:14px 12px 6px;font-size:12px;color:#C7D2FE;font-weight:600}
+.nav a,.nav .soon{display:flex;align-items:center;gap:12px;min-height:44px;padding:0 12px;border-radius:8px;color:#E2E8F0;font-weight:500;font-size:14px;text-decoration:none}
+.nav a:hover{background:rgba(255,255,255,.1)}.nav a[aria-current=page]{background:rgba(255,255,255,.18);color:#fff;font-weight:600}
+.nav a:focus-visible,.side button:focus-visible{outline:2px solid #fff;outline-offset:2px}
+.nav .soon{opacity:.7}.nav .soon em{margin-left:auto;font-style:normal;font-size:11px;border:1px solid rgba(255,255,255,.35);border-radius:999px;padding:1px 8px}
+.side-foot{padding:12px 16px;border-top:1px solid rgba(255,255,255,.14);font-size:12px;color:#C7D2FE}
+.main-col{min-width:0}
+.top{position:sticky;top:0;z-index:30;display:flex;align-items:center;gap:8px;height:60px;padding:0 16px;background:var(--color-surface);border-bottom:1px solid var(--color-border)}
+.brand-sm{font-weight:700;color:var(--color-primary);font-size:18px}
+.icon-btn{width:44px;height:44px;display:inline-grid;place-items:center;border:0;background:none;color:inherit;border-radius:8px;cursor:pointer;font-size:22px}.icon-btn:hover{background:var(--color-bg)}
+.who{margin-left:auto;display:flex;align-items:center;gap:10px}.who label{font-size:12px;color:var(--color-text-muted)}.who select{height:40px;width:auto}
+.avatar{width:36px;height:36px;border-radius:50%;background:var(--color-primary-soft);color:var(--color-primary);display:grid;place-items:center;font-weight:700;font-size:13px}
+main#main{padding:20px 16px 48px;max-width:1200px;margin-inline:auto}
+@media (min-width:1024px){.app{display:grid;grid-template-columns:264px minmax(0,1fr)}.side{position:sticky;top:0;height:100vh;transform:none;visibility:visible;width:264px;max-width:none}.side-close,.menu-btn,.brand-sm,.scrim{display:none!important}main#main{padding:28px 32px 56px}.top{padding:0 32px}}
+@media (max-width:640px){.who label{display:none}}
+.page-head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px 16px;margin-bottom:16px}
+.page-head h1{margin:0 0 6px;font-size:24px;line-height:32px;color:var(--color-text);letter-spacing:-.015em}
+.pills{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.pill{display:inline-flex;align-items:center;border-radius:999px;padding:2px 10px;font-size:12px;font-weight:600;white-space:nowrap;background:var(--color-bg);color:var(--color-text-body);border:1px solid var(--color-border)}
+.pill.ok{background:var(--color-secondary-soft);color:var(--color-secondary);border-color:transparent}.pill.info{background:var(--color-primary-soft);color:var(--color-primary);border-color:transparent}
+.pill.warn{background:var(--color-warning-soft);color:var(--color-warning-text);border-color:transparent}.pill.danger{background:var(--color-error-soft);color:var(--color-error);border-color:transparent}
+.btn{font:600 14px var(--font);min-height:44px;padding:0 18px;border-radius:8px;border:1px solid var(--color-border-field);background:var(--color-surface);color:var(--color-text);cursor:pointer}
+.btn:hover:not(:disabled){background:var(--color-bg)}.btn:disabled{opacity:.5;cursor:not-allowed}
+.btn.primary{background:var(--color-primary);border-color:var(--color-primary);color:#fff}.btn.primary:hover:not(:disabled){filter:brightness(1.12);background:var(--color-primary)}
+.btn.sm{min-height:40px;font-size:13px;padding:0 12px}.btn.link{border-color:transparent;background:none;color:var(--color-primary);text-decoration:underline}
+.plus{width:44px;padding:0;font-size:22px;line-height:1;flex:none}
+button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,.chip:has(input:focus-visible){outline:none;box-shadow:var(--focus-ring)}
+.banner{display:none;padding:12px 16px;border-radius:8px;background:var(--color-warning-soft);color:var(--color-warning-text);margin-bottom:16px;font-weight:500}.banner.show{display:block}
+.metrics{display:grid;gap:12px;grid-template-columns:1fr;margin-bottom:16px}@media (min-width:640px){.metrics{grid-template-columns:1fr 1fr}}@media (min-width:1024px){.metrics{grid-template-columns:repeat(4,1fr)}}
+.panel{background:var(--color-surface);border:1px solid var(--color-border);border-radius:12px;box-shadow:0 1px 2px rgba(15,23,42,.06)}.panel+.panel{margin-top:16px}
+.metric{padding:14px 16px;display:flex;flex-direction:column;gap:2px}.metric span{font-size:13px;color:var(--color-text-muted)}.metric b{font-size:24px;line-height:30px;color:var(--color-text);font-variant-numeric:tabular-nums}.metric small{font-size:12px;color:var(--color-text-muted)}
+.panel-pad{padding:18px 16px}@media (min-width:640px){.panel-pad{padding:22px 24px}}
+.panel h2{margin:0 0 2px;font-size:17px;line-height:24px;color:var(--color-text)}.desc{margin:0 0 16px;color:var(--color-text-muted);font-size:14px}
+.ph{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:flex-end;padding:18px 16px 0}@media (min-width:640px){.ph{padding:22px 24px 0}}
+.ph .desc{margin-bottom:12px}.ph .pills{margin-bottom:12px}
+.readonly{background:var(--color-bg);border:1px solid var(--color-border);border-radius:8px;padding:12px 14px;margin-bottom:8px}
+.f{display:flex;flex-direction:column;gap:5px;min-width:0}.f>label,.lbl{font-weight:600;font-size:14px;color:var(--color-text)}.req{color:var(--color-error);margin-left:2px}
+input,select,textarea{font:15px var(--font);color:var(--color-text);background:var(--color-surface);border:1px solid var(--color-border-field);border-radius:8px;padding:0 12px;width:100%;height:44px}
+textarea{height:auto;min-height:130px;padding:10px 12px;resize:vertical;line-height:22px}
+.hint{font-size:13px;color:var(--color-text-muted)}.err{font-size:13px;color:var(--color-error);font-weight:500}.err:empty{display:none}
+.selrow{display:flex;gap:8px}.selrow select{flex:1;min-width:0}
+.grid2{display:grid;gap:14px 16px;grid-template-columns:1fr}@media (min-width:640px){.grid2{grid-template-columns:1fr 1fr}.span2{grid-column:1/-1}}
+.chips{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.chip{display:inline-flex;align-items:center;min-height:40px;border:1px solid var(--color-border-field);border-radius:999px;padding:0 16px;cursor:pointer;color:var(--color-text);font-weight:500;position:relative}
+.chip input{position:absolute;opacity:0;width:100%;height:100%;inset:0;margin:0;cursor:pointer}.chip:has(input:checked){background:var(--color-primary);border-color:var(--color-primary);color:#fff}
+.tblw{container-type:inline-size;margin-top:4px}.tbl{width:100%;border-collapse:collapse;font-size:14px}
+.tbl th{text-align:left;font-size:12px;font-weight:600;color:var(--color-text-muted);padding:10px 14px;background:var(--color-bg);border-top:1px solid var(--color-border);border-bottom:1px solid var(--color-border);white-space:nowrap}
+.tbl td{padding:12px 14px;border-bottom:1px solid var(--color-border);vertical-align:middle}.tbl tr:last-child td{border-bottom:0}
+.person{display:flex;align-items:center;gap:12px;min-width:0}.person b{display:block;color:var(--color-text)}.person small{color:var(--color-text-muted)}
+.num-b{flex:none;width:32px;height:32px;border-radius:8px;background:var(--color-primary-soft);color:var(--color-primary);display:grid;place-items:center;font-weight:700}
+.row-acts{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap}.empty{padding:32px 16px;text-align:center;color:var(--color-text-muted)}
+@container (max-width:719px){.tbl thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}.tbl,.tbl tbody{display:block}.tbl tr{display:block;padding:12px 16px;border-bottom:1px solid var(--color-border)}.tbl td{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:6px 0;border:0;text-align:right}.tbl td::before{content:attr(data-label);font-size:12px;font-weight:600;color:var(--color-text-muted);text-align:left}.tbl td.who-cell{display:block;text-align:left}.tbl td.who-cell::before,.tbl td.btn-cell::before{display:none}.tbl td.btn-cell{display:block;padding-top:10px}.tbl td.btn-cell .row-acts .btn{flex:1 1 120px}}
+.rows{list-style:none;margin:0;padding:0;border:1px solid var(--color-border);border-radius:8px}.rows li{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;padding:10px 14px}.rows li+li{border-top:1px solid var(--color-border)}.rows .nm{flex:1 1 200px;min-width:0}.rows .nm b{display:block;color:var(--color-text)}.rows .nm small{color:var(--color-text-muted)}
+.hist{list-style:none;margin:0;padding:0}.hist li{padding:10px 0;border-bottom:1px solid var(--color-border);display:flex;flex-wrap:wrap;gap:4px 16px}.hist li:last-child{border:0}.hist time{color:var(--color-text-muted);font-size:13px;min-width:110px}
+.sticky-bar{position:sticky;bottom:0;z-index:10;display:flex;flex-wrap:wrap;gap:12px;justify-content:flex-end;padding:12px 16px calc(12px + env(safe-area-inset-bottom,0px));margin:16px -16px 0;background:var(--color-surface);border-top:1px solid var(--color-border)}
+.sticky-bar .btn{flex:1 1 140px}@media (min-width:640px){.sticky-bar .btn{flex:0 0 auto}}@media (min-width:1024px){.sticky-bar{margin-inline:-32px;padding-inline:32px}}
+dialog{border:0;padding:0;border-radius:12px;box-shadow:0 20px 40px -8px rgba(15,23,42,.35);width:min(92vw,480px);background:var(--color-surface);color:var(--color-text-body)}dialog::backdrop{background:rgba(15,23,42,.55)}
+dialog form{padding:20px;display:flex;flex-direction:column;gap:14px;max-height:90vh;overflow:auto}dialog h2{margin:0;font-size:18px;color:var(--color-text)}
+#dlgMeta,#dlgM{width:min(94vw,680px)}
+.dacts{display:flex;flex-direction:column-reverse;gap:8px}@media (min-width:480px){.dacts{flex-direction:row;justify-content:flex-end}}
+.toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%);max-width:min(92vw,440px);background:var(--color-text);color:var(--color-bg);padding:12px 16px;border-radius:8px;font-size:14px;z-index:90}.toast[hidden]{display:none}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+.seg{display:flex;flex-wrap:wrap;gap:8px;padding:0 16px 14px}@media (min-width:640px){.seg{padding:0 24px 14px}}
+.seg button{font:600 13px var(--font);min-height:40px;padding:0 16px;border-radius:999px;border:1px solid var(--color-border-field);background:var(--color-surface);color:var(--color-text);cursor:pointer}
+.seg button[aria-pressed=true]{background:var(--color-primary);border-color:var(--color-primary);color:#fff}
+.blk{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}.blk li{padding:8px 12px;border-radius:8px;background:var(--color-warning-soft);color:var(--color-warning-text);font-size:14px}.blk li.okl{background:var(--color-secondary-soft);color:var(--color-secondary)}
+.alcfg{display:grid;gap:12px;grid-template-columns:1fr;margin-top:14px;align-items:end}@media (min-width:720px){.alcfg{grid-template-columns:1fr 1fr auto}}
+.chk{display:flex;align-items:center;gap:10px;min-height:44px;font-weight:500;color:var(--color-text)}.chk input{width:22px;height:22px;accent-color:var(--color-primary)}
+.tbl td small{overflow-wrap:anywhere}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Ir para o conteúdo</a>
+<div class="app" id="app">
+<aside class="side" id="side" aria-label="Menu principal">
+  <div class="side-brand"><span class="logo">I</span><div><span class="nm">INTEGRA</span><small>Gestão de projetos</small></div><button class="icon-btn side-close" type="button" data-close-menu aria-label="Fechar menu">×</button></div>
+  <nav class="nav" aria-label="Módulos"><h2>Projetos</h2><a href="#main">Cadastro de projeto</a><a href="#main">Objeto, metas e metodologia</a><a href="#main" aria-current="page">Documentos e certidões</a><span class="soon">Planilha financeira <em>no Financeiro</em></span><h2>Outros módulos</h2><span class="soon">Financeiro <em>em breve</em></span></nav>
+  <div class="side-foot">Protótipo de referência</div>
+</aside>
+<div class="scrim" hidden></div>
+<div class="main-col">
+<header class="top"><button class="icon-btn menu-btn" type="button" aria-expanded="false" aria-controls="side" aria-label="Abrir menu">☰</button><span class="brand-sm">INTEGRA</span>
+  <div class="who"><label for="perfil">Ver como</label><select id="perfil"><option>Projetos (máxima)</option><option>Projetos (padrão)</option><option>Financeiro</option><option>Coordenação</option></select><span class="avatar" aria-hidden="true">AR</span></div></header>
+<main id="main">
+  <div class="page-head"><div><h1>Documentos, declarações e certidões</h1>
+    <div class="pills"><span class="pill info">Esporte para Todos</span><span class="pill">Etapa: Celebração</span><span class="pill warn" id="pApto">Ainda não apto para celebração</span></div></div>
+    <div class="pills"><button class="btn sm" type="button" id="bTipos">Gerenciar tipos</button><button class="btn sm primary" type="button" id="bNovo">Novo documento</button></div></div>
+  <div class="banner" id="banner">Este perfil só consulta os documentos.</div>
+
+  <div class="metrics">
+    <div class="panel metric"><span>Exigidos aprovados</span><b id="m1">0 de 0</b><small>Tipos obrigatórios para a celebração</small></div>
+    <div class="panel metric"><span>Pendentes de envio</span><b id="m2">0</b><small>Tipos exigidos sem arquivo</small></div>
+    <div class="panel metric"><span>Alertas de validade</span><b id="m3">0</b><small>Próximos do vencimento ou vencidos</small></div>
+    <div class="panel metric"><span>Em análise ou rejeitados</span><b id="m4">0</b><small>Dependem de ação</small></div>
+  </div>
+
+  <section class="panel panel-pad"><h2>Para a celebração</h2><p class="desc">O projeto só pode ser validado quando todos os documentos exigidos estiverem aprovados e dentro da validade.</p>
+    <ul class="blk" id="blk"></ul>
+    <div class="pills" style="margin-top:12px"><button class="btn primary" type="button" id="bVal">Validar para celebração</button></div></section>
+
+  <section class="panel panel-pad"><h2>Alertas de validade</h2><p class="desc">Os avisos de certidões e outros documentos com validade seguem estes prazos. O administrador pode alterá-los.</p>
+    <ul class="blk" id="alr"></ul>
+    <div class="alcfg"><div class="f"><label for="aA">Próxima do vencimento (dias antes)</label><input id="aA" inputmode="numeric"></div><div class="f"><label for="aB">Vencimento próximo (dias antes)</label><input id="aB" inputmode="numeric"></div><button class="btn" type="button" id="bAl">Salvar prazos</button></div>
+    <small class="err" id="aEr"></small></section>
+
+  <section class="panel">
+    <div class="ph"><div><h2>Documentos do projeto</h2><p class="desc">Declarações, certidões e demais documentos usam o mesmo cadastro. Notas fiscais e comprovantes de pagamento vêm do módulo Financeiro e não são anexados aqui.</p></div></div>
+    <div class="seg" id="seg" role="group" aria-label="Filtrar por categoria"></div>
+    <div class="tblw"><table class="tbl"><thead><tr><th>Documento</th><th>Validade</th><th>Situação</th><th>Status</th><th>Arquivo</th><th><span class="sr">Ações</span></th></tr></thead><tbody id="tb"></tbody></table><div class="empty" id="empty" hidden>Nenhum documento nesta categoria.</div></div>
+    <p class="hint" id="catHint" style="padding:0 24px 16px;margin:0"></p>
+  </section>
+</main></div></div>
+
+<dialog id="dlgD"><form id="dForm"><h2 id="dT">Novo documento</h2>
+  <div class="grid2">
+    <div class="f span2"><label for="dTipo">Tipo de documento<span class="req">*</span></label><div class="selrow"><select id="dTipo"></select><button class="btn plus" type="button" data-newt aria-label="Cadastrar novo tipo de documento">+</button></div><small class="hint" id="dHint"></small></div>
+    <div class="f span2"><label for="dNome">Nome<span class="req">*</span></label><input id="dNome" autocomplete="off"></div>
+    <div class="f" id="gEmi"><label for="dEmi">Data de emissão<span class="req">*</span></label><input type="date" id="dEmi"></div>
+    <div class="f" id="gVal"><label for="dVal">Validade<span class="req">*</span></label><input type="date" id="dVal"></div>
+    <div class="f" id="gOrg"><label for="dOrg">Órgão emissor<span class="req">*</span></label><input id="dOrg" autocomplete="off"></div>
+    <div class="f" id="gNum"><label for="dNum">Número<span class="req">*</span></label><input id="dNum" autocomplete="off"></div>
+    <div class="f span2" id="gResp"><label for="dResp">Responsável pela assinatura<span class="req">*</span></label><select id="dResp"><option value="">Selecione</option><option>Ana Ribeiro</option><option>Carlos Mendes</option><option>Juliana Prado</option></select></div>
+    <div class="f span2"><label for="dDesc">Descrição</label><input id="dDesc" autocomplete="off"></div>
+    <div class="f span2"><label for="dFile">Arquivo<span class="req">*</span></label><input type="file" id="dFile" accept=".pdf,.png,.jpg,.jpeg" style="height:auto;padding:9px 12px"><small class="hint">PDF, PNG ou JPG, até 10 MB.</small></div>
+    <div class="f span2" id="gWhy"><label for="dWhy">Motivo da substituição<span class="req">*</span></label><input id="dWhy" autocomplete="off"><small class="hint">A versão anterior fica guardada no histórico.</small></div>
+  </div>
+  <small class="err" id="dEr"></small>
+  <div class="dacts"><button class="btn" type="button" id="dNo">Voltar</button><button class="btn primary" type="submit">Salvar documento</button></div></form></dialog>
+
+<dialog id="dlgT"><form id="tForm"><h2 id="tT">Cadastrar tipo de documento</h2>
+  <div class="f"><label for="tN">Nome<span class="req">*</span></label><input id="tN" autocomplete="off"></div>
+  <div class="f"><label for="tC">Categoria<span class="req">*</span></label><select id="tC"><option value="">Selecione</option><option>Declaração</option><option>Certidão</option><option>Documento</option></select><small class="hint">Certidão pede órgão emissor, número e emissão. Declaração pede o responsável pela assinatura.</small></div>
+  <label class="chk"><input type="checkbox" id="tV"> Tem prazo de validade</label>
+  <label class="chk"><input type="checkbox" id="tR"> Exigido para a celebração</label>
+  <small class="err" id="tEr"></small>
+  <div class="dacts"><button class="btn" type="button" id="tNo">Voltar</button><button class="btn primary" type="submit">Salvar</button></div></form></dialog>
+
+<dialog id="dlgM"><form method="dialog"><h2>Gerenciar tipos de documento</h2><p class="hint">Tipos inativos saem das listas de novos documentos, mas continuam valendo nos documentos já cadastrados.</p>
+  <ul class="rows" id="mList"></ul>
+  <div class="dacts"><button class="btn" type="button" id="mAdd">Cadastrar novo</button><button class="btn primary" type="submit">Fechar</button></div></form></dialog>
+
+<dialog id="dlgH"><form method="dialog"><h2 id="hT">Histórico</h2><ul class="hist" id="hL"></ul><div class="dacts"><button class="btn primary" type="submit">Fechar</button></div></form></dialog>
+
+<dialog id="dlgW"><form id="wForm"><h2 id="wT">Motivo</h2><div class="f"><label for="wW" id="wL">Motivo</label><textarea id="wW" style="min-height:90px"></textarea></div><small class="err" id="wEr"></small>
+  <div class="dacts"><button class="btn" type="button" id="wNo">Voltar</button><button class="btn primary" type="submit">Confirmar</button></div></form></dialog>
+<div class="toast" id="toast" role="status" hidden></div>
+
+<script>
+(function(){
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const esc=s=>String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/"/g,"&quot;");
+const HJ=new Date();HJ.setHours(0,0,0,0);
+const iso=n=>{const x=new Date(HJ);x.setDate(x.getDate()+n);return x.getFullYear()+"-"+String(x.getMonth()+1).padStart(2,"0")+"-"+String(x.getDate()).padStart(2,"0")};
+const dt=s=>s?new Date(s+"T00:00").toLocaleDateString("pt-BR"):"";
+const days=s=>Math.ceil((new Date(s+"T00:00")-HJ)/864e5);
+const stamp=()=>{const d=new Date();return d.toLocaleDateString("pt-BR")+" "+d.toLocaleTimeString("pt-BR",{hour:"2-digit",minute:"2-digit"})};
+const T=(n,c,v,r)=>({n,c,v,r,a:1});
+let TIPOS=[T("Certidão negativa de débitos federais","Certidão",1,1),T("Certidão de regularidade do FGTS","Certidão",1,1),T("Certidão negativa trabalhista","Certidão",1,1),T("Declaração de contrapartida","Declaração",0,1),T("Declaração de capacidade técnica","Declaração",0,1),T("Instrumento assinado","Documento",0,1),T("Plano de trabalho","Documento",0,1),T("Fotografias do núcleo","Documento",0,0)];
+const ver=(arq,tam)=>({v:1,arq,tam,data:stamp(),user:"Ana Ribeiro",motivo:""});
+let DOCS=[
+ {id:1,tipo:"Certidão negativa de débitos federais",nome:"CND federal",val:iso(20),org:"Receita Federal",num:"A1B2.C3D4",emi:iso(-160),status:"Aprovado",vers:[ver("cnd-federal.pdf","210 KB")],evts:[{t:stamp(),x:"Aprovado",u:"Ana Ribeiro"}]},
+ {id:2,tipo:"Certidão de regularidade do FGTS",nome:"CRF FGTS",val:iso(120),org:"Caixa Econômica Federal",num:"2026110901",emi:iso(-10),status:"Em análise",vers:[ver("crf-fgts.pdf","180 KB")],evts:[]},
+ {id:3,tipo:"Certidão negativa trabalhista",nome:"CNDT",val:iso(-3),org:"Tribunal Superior do Trabalho",num:"778899",emi:iso(-183),status:"Aprovado",vers:[ver("cndt.pdf","95 KB")],evts:[]},
+ {id:4,tipo:"Declaração de contrapartida",nome:"Declaração de contrapartida",resp:"Ana Ribeiro",status:"Anexado",vers:[ver("declaracao-contrapartida.pdf","120 KB")],evts:[]},
+ {id:5,tipo:"Instrumento assinado",nome:"Termo de fomento assinado",status:"Aprovado",vers:[ver("termo-fomento.pdf","1,2 MB")],evts:[]}];
+let nid=6,AL={a:30,b:15},ro=false,mx=true,fc="Todos",dMode="new",dDoc=null,tEd=null,wCb=null,valido=false;
+const tp=n=>TIPOS.find(x=>x.n===n);
+function say(m){const t=$("#toast");t.textContent=m;t.hidden=false;clearTimeout(say.t);say.t=setTimeout(()=>t.hidden=true,4200)}
+function ev(d,x,w){d.evts.unshift({t:stamp(),x,w:w||"",u:$("#perfil").value})}
+function rows(){const o=DOCS.map(d=>({d,t:tp(d.tipo)}));TIPOS.filter(t=>t.a&&t.r&&!DOCS.some(d=>d.tipo===t.n)).forEach(t=>o.push({d:null,t}));return o}
+function sit(r){const{d,t}=r;if(!d||!t.v)return["",""];const n=days(d.val);if(n<0)return["Vencida","danger"];if(n<=AL.b)return["Vencimento próximo ("+n+" dias)","danger"];if(n<=AL.a)return["Próxima do vencimento ("+n+" dias)","warn"];return["Válida","ok"]}
+const SC={Pendente:"","Anexado":"info","Em análise":"warn","Aprovado":"ok","Rejeitado":"danger"};
+function bloqueios(){const b=[];TIPOS.filter(t=>t.a&&t.r).forEach(t=>{const d=DOCS.find(x=>x.tipo===t.n);if(!d)b.push(t.n+": pendente de envio");else if(d.status!=="Aprovado")b.push(t.n+": "+d.status.toLowerCase());else if(t.v&&days(d.val)<0)b.push(t.n+": vencida, é preciso renovar")});return b}
+function acts(r){const{d,t}=r,i=d?d.id:"",bt=(a,l,ok)=>'<button class="btn sm" type="button" data-a="'+a+'" data-i="'+i+'" data-t="'+esc(t.n)+'"'+(ok&&!ro?"":" disabled")+">"+l+"</button>";let h="";
+  if(!d)h=bt("new","Anexar",true);else{if(d.status==="Anexado")h+=bt("an","Enviar para análise",true);if(d.status==="Em análise"){h+=bt("ap","Aprovar",mx)+bt("rj","Rejeitar",mx)}if(["Anexado","Aprovado","Rejeitado"].includes(d.status))h+=bt("rep","Substituir",true);h+='<button class="btn sm" type="button" data-a="hist" data-i="'+i+'">Histórico</button>'}return h}
+function render(){const R=rows(),req=TIPOS.filter(t=>t.a&&t.r),bl=bloqueios();
+  const aprov=req.filter(t=>{const d=DOCS.find(x=>x.tipo===t.n);return d&&d.status==="Aprovado"&&!(t.v&&days(d.val)<0)}).length;
+  $("#m1").textContent=aprov+" de "+req.length;$("#m2").textContent=req.filter(t=>!DOCS.some(d=>d.tipo===t.n)).length;
+  const al=R.filter(r=>["warn","danger"].includes(sit(r)[1]));$("#m3").textContent=al.length;$("#m4").textContent=DOCS.filter(d=>["Em análise","Rejeitado"].includes(d.status)).length;
+  $("#blk").innerHTML=bl.length?bl.map(x=>"<li>"+esc(x)+"</li>").join(""):'<li class="okl">Todos os documentos exigidos estão aprovados e dentro da validade.</li>';
+  $("#bVal").disabled=ro||!mx||bl.length>0||valido;
+  $("#pApto").textContent=valido?"Validado para celebração":(bl.length?"Ainda não apto para celebração":"Apto para celebração");$("#pApto").className="pill "+(valido||!bl.length?"ok":"warn");
+  $("#alr").innerHTML=al.length?al.map(r=>'<li><b>'+esc(r.d.nome)+"</b>, "+sit(r)[0].toLowerCase()+". Validade em "+dt(r.d.val)+".</li>").join(""):'<li class="okl">Nenhum documento com a validade em risco.</li>';
+  $("#seg").innerHTML=["Todos","Declaração","Certidão","Documento"].map(c=>'<button type="button" data-c="'+c+'" aria-pressed="'+(fc===c)+'">'+(c==="Todos"?"Todos":c+"s")+"</button>").join("");
+  const L=R.filter(r=>fc==="Todos"||r.t.c===fc);$("#empty").hidden=L.length>0;
+  $("#tb").innerHTML=L.map(r=>{const{d,t}=r,s=sit(r),v=d?d.vers[d.vers.length-1]:null,st=d?d.status:"Pendente";
+    const sub=t.c+(d&&d.org?", "+d.org+(d.num?" nº "+d.num:""):"")+(d&&d.resp?", assina "+d.resp:"");
+    return '<tr><td class="who-cell"><div class="person"><div class="t"><b>'+esc(d?d.nome:t.n)+"</b><small>"+esc(sub)+'</small></div></div></td><td data-label="Validade">'+(d&&t.v?dt(d.val):"Sem validade")+'</td><td data-label="Situação">'+(s[0]?'<span class="pill '+s[1]+'">'+s[0]+"</span>":"—")+'</td><td data-label="Status"><span class="pill '+SC[st]+'">'+st+'</span></td><td data-label="Arquivo">'+(v?esc(v.arq)+" <small>(v"+v.v+")</small>":"—")+'</td><td class="btn-cell"><div class="row-acts">'+acts(r)+"</div></td></tr>"}).join("")}
+function fillTipos(sel){const c=$("#dTipo"),v=sel!==undefined?sel:c.value;c.innerHTML='<option value="">Selecione</option>'+TIPOS.filter(x=>x.a||x.n===v).map(x=>'<option value="'+esc(x.n)+'">'+esc(x.n)+(x.a?"":" (inativo)")+"</option>").join("");c.value=v}
+function syncD(){const t=tp($("#dTipo").value),c=t?t.c:"";$("#gVal").style.display=t&&t.v?"":"none";$("#gEmi").style.display=c==="Certidão"?"":"none";$("#gOrg").style.display=c==="Certidão"?"":"none";$("#gNum").style.display=c==="Certidão"?"":"none";$("#gResp").style.display=c==="Declaração"?"":"none";$("#gWhy").style.display=dMode==="rep"?"":"none";
+  $("#dHint").textContent=t?t.c+(t.v?", com validade":", sem validade")+(t.r?", exigido para a celebração":""):""}
+function openDoc(mode,d,tn){dMode=mode;dDoc=d||null;const t=d?tp(d.tipo):tn?tp(tn):null;$("#dT").textContent=mode==="rep"?"Substituir documento":"Novo documento";
+  fillTipos(t?t.n:"");$("#dTipo").disabled=mode==="rep";$("#dNome").value=d?d.nome:(t?t.n:"");$("#dEmi").value=d&&d.emi||"";$("#dVal").value=d&&d.val||"";$("#dOrg").value=d&&d.org||"";$("#dNum").value=d&&d.num||"";$("#dResp").value=d&&d.resp||"";$("#dDesc").value=d&&d.desc||"";$("#dFile").value="";$("#dWhy").value="";$("#dEr").textContent="";
+  syncD();$("#dlgD").showModal();$("#dNome").focus()}
+$("#dTipo").onchange=()=>{const t=tp($("#dTipo").value);if(t&&(!$("#dNome").value||TIPOS.some(x=>x.n===$("#dNome").value)))$("#dNome").value=t.n;syncD()};
+$("#dNo").onclick=()=>$("#dlgD").close();
+$("#dForm").addEventListener("submit",e=>{e.preventDefault();const er=$("#dEr"),bad=x=>{er.textContent=x},t=tp($("#dTipo").value);er.textContent="";
+  if(!t)return bad("Escolha o tipo de documento.");const nome=$("#dNome").value.trim();if(!nome)return bad("Informe o nome do documento.");
+  const o={emi:$("#dEmi").value,val:$("#dVal").value,org:$("#dOrg").value.trim(),num:$("#dNum").value.trim(),resp:$("#dResp").value,desc:$("#dDesc").value.trim()};
+  if(t.c==="Certidão"){if(!o.org)return bad("Informe o órgão emissor.");if(!o.num)return bad("Informe o número da certidão.");if(!o.emi)return bad("Informe a data de emissão.")}
+  if(t.c==="Declaração"&&!o.resp)return bad("Escolha quem assina a declaração.");
+  if(t.v){if(!o.val)return bad("Informe a validade.");if(o.emi&&o.val<=o.emi)return bad("A validade deve ser posterior à emissão.")}
+  const f=$("#dFile").files[0];if(!f)return bad("Anexe o arquivo.");if(!/\.(pdf|png|jpe?g)$/i.test(f.name))return bad("Use PDF, PNG ou JPG.");if(f.size>10485760)return bad("O arquivo passa de 10 MB.");
+  const w=$("#dWhy").value.trim();if(dMode==="rep"&&!w)return bad("Informe o motivo da substituição.");
+  if(dMode==="new"&&t.r&&DOCS.some(d=>d.tipo===t.n))return bad("Já existe documento deste tipo. Use Substituir.");
+  const tam=f.size>1048576?(f.size/1048576).toFixed(1).replace(".",",")+" MB":Math.max(1,Math.round(f.size/1024))+" KB",u=$("#perfil").value;
+  if(dMode==="rep"){const d=dDoc;Object.assign(d,o,{nome});const n=d.vers.length+1;d.vers.push({v:n,arq:f.name,tam,data:stamp(),user:u,motivo:w});d.status="Anexado";ev(d,"Nova versão anexada (v"+n+")",w)}
+  else{const d=Object.assign({id:nid++,tipo:t.n,nome,status:"Anexado",vers:[{v:1,arq:f.name,tam,data:stamp(),user:u,motivo:""}],evts:[]},o);ev(d,"Documento anexado");DOCS.push(d)}
+  valido=false;$("#dlgD").close();render();say(dMode==="rep"?"Nova versão anexada. A anterior ficou no histórico.":"Documento anexado.")});
+function askW(t,l,cb){wCb=cb;$("#wT").textContent=t;$("#wL").textContent=l;$("#wW").value="";$("#wEr").textContent="";$("#dlgW").showModal();$("#wW").focus()}
+$("#wNo").onclick=()=>$("#dlgW").close();
+$("#wForm").addEventListener("submit",e=>{e.preventDefault();const w=$("#wW").value.trim();if(!w){$("#wEr").textContent="Informe o motivo.";return}$("#dlgW").close();wCb&&wCb(w)});
+$("#tb").addEventListener("click",e=>{const b=e.target.closest("[data-a]");if(!b)return;const a=b.dataset.a,d=DOCS.find(x=>x.id===+b.dataset.i);
+  if(a==="new")openDoc("new",null,b.dataset.t);if(a==="rep")openDoc("rep",d);
+  if(a==="an"){d.status="Em análise";ev(d,"Enviado para análise");valido=false;render();say("Enviado para análise.")}
+  if(a==="ap"){d.status="Aprovado";ev(d,"Aprovado");render();say("Documento aprovado.")}
+  if(a==="rj")askW("Rejeitar documento","Motivo da rejeição",w=>{d.status="Rejeitado";ev(d,"Rejeitado",w);valido=false;render();say("Documento rejeitado. O responsável será notificado com o motivo.")});
+  if(a==="hist"){$("#hT").textContent="Histórico: "+d.nome;$("#hL").innerHTML=d.vers.slice().reverse().map(v=>"<li><time>"+v.data+"</time><span><b>Versão "+v.v+(v===d.vers[d.vers.length-1]?" (vigente)":" (substituída)")+"</b><br>"+esc(v.arq)+", "+v.tam+(v.motivo?'<br><span class="hint">Motivo: '+esc(v.motivo)+"</span>":"")+'<br><span class="hint">Por '+esc(v.user)+"</span></span></li>").join("")+d.evts.map(x=>"<li><time>"+x.t+"</time><span><b>"+esc(x.x)+"</b>"+(x.w?'<br><span class="hint">'+esc(x.w)+"</span>":"")+'<br><span class="hint">Por '+esc(x.u)+"</span></span></li>").join("");$("#dlgH").showModal()}});
+$("#seg").addEventListener("click",e=>{const b=e.target.closest("[data-c]");if(b){fc=b.dataset.c;render()}});
+$("#bNovo").onclick=()=>openDoc("new");
+$("#bVal").onclick=()=>{valido=true;render();say("Projeto validado para celebração. Segue para a etapa seguinte.")};
+$("#bAl").onclick=()=>{const a=parseInt($("#aA").value,10),b=parseInt($("#aB").value,10),er=$("#aEr");er.textContent="";if(!(b>0&&a>b)){er.textContent="Use números inteiros, com o primeiro aviso maior que o segundo.";return}AL={a,b};render();say("Prazos de alerta atualizados.")};
+// tipos de documento (permissão máxima)
+function openTipo(item){tEd=item||null;const t=item?tp(item):null;$("#tT").textContent=(item?"Editar":"Cadastrar")+" tipo de documento";$("#tN").value=item||"";$("#tC").value=t?t.c:"";$("#tV").checked=!!(t&&t.v);$("#tR").checked=!!(t&&t.r);$("#tEr").textContent="";$("#dlgT").showModal();$("#tN").focus()}
+$("#tNo").onclick=()=>$("#dlgT").close();
+$("#tForm").addEventListener("submit",e=>{e.preventDefault();const n=$("#tN").value.trim().replace(/\s+/g," "),c=$("#tC").value,er=$("#tEr");er.textContent="";
+  if(!n){er.textContent="Informe o nome.";return}if(!c){er.textContent="Escolha a categoria.";return}
+  if(TIPOS.some(x=>x.n!==tEd&&x.n.toLowerCase()===n.toLowerCase())){er.textContent="Já existe um tipo com este nome. Se estiver inativo, ative-o em Gerenciar.";return}
+  const v=$("#tV").checked?1:0,r=$("#tR").checked?1:0;
+  if(tEd){const x=tp(tEd);DOCS.forEach(d=>{if(d.tipo===tEd)d.tipo=n});Object.assign(x,{n,c,v,r})}else TIPOS.push({n,c,v,r,a:1});
+  const open=$("#dlgD").open;$("#dlgT").close();if(open){fillTipos(n);$("#dNome").value=$("#dNome").value||n;syncD()}render();rMan();say(tEd?"Tipo atualizado.":"Tipo cadastrado"+(open?" e selecionado.":"."))});
+function rMan(){$("#mList").innerHTML=TIPOS.map(x=>'<li><div class="nm"><b>'+esc(x.n)+"</b><small>"+x.c+", "+(x.v?"com validade":"sem validade")+(x.r?", exigido na celebração":"")+'</small></div><span class="pill '+(x.a?"ok":"")+'">'+(x.a?"Ativo":"Inativo")+'</span><button class="btn sm" type="button" data-te="'+esc(x.n)+'">Editar</button><button class="btn sm" type="button" data-tg="'+esc(x.n)+'">'+(x.a?"Inativar":"Ativar")+"</button></li>").join("")}
+$("#bTipos").onclick=()=>{rMan();$("#dlgM").showModal()};$("#mAdd").onclick=()=>{$("#dlgM").close();openTipo()};
+$("[data-newt]").onclick=()=>openTipo();
+$("#mList").addEventListener("click",e=>{const b=e.target.closest("[data-te]"),g=e.target.closest("[data-tg]");if(b){$("#dlgM").close();openTipo(b.dataset.te)}
+  if(g){const x=tp(g.dataset.tg);x.a=x.a?0:1;render();rMan();say(x.a?"Ativado. Volta a aparecer nas listas.":"Inativado. Continua nos documentos já cadastrados.")}});
+function perfil(){const p=$("#perfil").value;ro=p==="Financeiro"||p==="Coordenação";mx=p==="Projetos (máxima)";
+  $("#banner").classList.toggle("show",ro);$("#bNovo").disabled=ro;$("#bTipos").style.display=mx?"":"none";$("[data-newt]").disabled=!mx;$("[data-newt]").title=mx?"Cadastrar novo tipo":"Somente quem tem permissão máxima de projeto pode cadastrar";
+  $("#aA").disabled=$("#aB").disabled=$("#bAl").disabled=!mx;$("#catHint").textContent=!mx&&!ro?"Aprovar, rejeitar, validar para a celebração e cadastrar tipos exigem permissão máxima de projeto.":"";render()}
+$("#perfil").onchange=perfil;
+const app=$("#app"),mb=$(".menu-btn"),sc=$(".scrim"),wide=matchMedia("(min-width:1024px)");
+function menu(o){app.classList.toggle("menu-open",o);document.body.style.overflow=o&&!wide.matches?"hidden":"";sc.hidden=!o;mb.setAttribute("aria-expanded",o);if(o)$("#side a").focus();else mb.focus()}
+mb.onclick=()=>menu(true);sc.onclick=()=>menu(false);$$("[data-close-menu]").forEach(b=>b.onclick=()=>menu(false));wide.addEventListener("change",()=>menu(false));
+document.addEventListener("keydown",e=>{if(e.key==="Escape"&&app.classList.contains("menu-open"))menu(false)});
+$("#aA").value=AL.a;$("#aB").value=AL.b;perfil();
+})();
+</script>
+</body>
+</html>
